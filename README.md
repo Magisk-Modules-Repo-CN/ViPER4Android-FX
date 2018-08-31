@@ -1,24 +1,26 @@
 # ViPER4Android FX
-This module enables ViPER4Android FX (You can choose between Material, 2.5.0.5, 2.4.0.1, and 2.3.4.0 during install). [More details in support thread](https://forum.xda-developers.com/apps/magisk/module-viper4android-fx-2-5-0-5-t3577058).
+这个模块用于启用 ViPER4Android FX  (你可以在安装时选择 Material, 2.5.0.5, 和 2.3.4.0). [更多细节在支持页面](https://forum.xda-developers.com/apps/magisk/module-viper4android-fx-2-5-0-5-t3577058).
 
-## Compatibility
-* Android Gingerbread+
-* Selinux enforcing
-* All root solutions (requires init.d support if not using magisk or supersu. Try [Init.d Injector](https://forum.xda-developers.com/android/software-hacking/mod-universal-init-d-injector-wip-t3692105))
+## 兼容性
+* Android Gingerbread(2.3)+
+* Selinux 执行中
+* 所有 root 解决方案 (如果不使用Magisk或SuperSU,则需要 init.d 支持. 尝试 [Init.d Injector](https://forum.xda-developers.com/android/software-hacking/mod-universal-init-d-injector-wip-t3692105))
 
-## Change Log
+## 变更日志
 ### v1.7.2 - 8.30.2018
-* Unity v1.6.1 update
+* 合入 v1.6.1 更新
 
 ### v1.7.1 - 8.24.2018
-* Unity v1.6 update
+* 合入 v1.6 更新
 
 ### v1.7 - 7.17.2018
-* Unity v1.5.5 update
+* 合入 v1.5.5 更新
 
 ### v1.6.9 - 5.7.2018
-* Add mediaserver kill to boot script
-* Unity v1.5.4 update
+* 将 mediaserver kill 添加到启动脚本
+* 合入 v1.5.4 更新
+
+### 之前的变更日志过于久远,故不提供翻译
 
 ### v1.6.8 - 4.28.2018
 * Removed new material apk - go to the app thread for it
@@ -101,11 +103,11 @@ This module enables ViPER4Android FX (You can choose between Material, 2.5.0.5, 
 ### v1.0 - 2.5.2018
 * Initial rerelease
 
-## Credits
+## 贡献者
 * [ViPER's Audio](http://vipersaudio.com/blog/)
 * [ViPER520](http://vipersaudio.com/blog/) @ XDA Developers
 * [zhuhang](https://forum.xda-developers.com/showthread.php?t=2191223) @ XDA Developers
 * [Team_DeWitt](https://forum.xda-developers.com/android/apps-games/app-viper4android-fx-2-6-0-0-t3774651) @ XDA Developers
 
-## Source Code
+## 源代码
 * Module [GitHub](https://github.com/therealahrion/ViPER4Android-FX)

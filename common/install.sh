@@ -14,8 +14,8 @@ osp_detect() {
 }
 
 keytest() {
-  ui_print " - Vol Key Test -"
-  ui_print "   Press Vol Up:"
+  ui_print " - 音量键测试 -"
+  ui_print "   按下[音量+]键:"
   (/system/bin/getevent -lc 1 2>&1 | /system/bin/grep VOLUME | /system/bin/grep " DOWN" > $INSTALLER/events) || return 1
   return 0
 }
@@ -49,8 +49,8 @@ chooseportold() {
   elif [ $SEL -eq $DOWN ]; then
     return 1
   else
-    ui_print "   Vol key not detected!"
-    abort "   Use name change method in TWRP"
+    ui_print "   未检测到音量键!"
+    abort "   请在 TWRP 中使用文件名修改方式"
   fi
 }
 
@@ -63,8 +63,8 @@ if $MAGISK && ! $SYSOVERRIDE; then
   FILES=$(find $LOC -type f -name "*audio_effects*.conf" -o -name "*audio_effects*.xml" 2>/dev/null)
   if [ ! -z "$FILES" ] && [ ! "$(echo $FILES | grep '/aml/')" ]; then
     ui_print " "
-    ui_print "   ! Conflicting audio mod found!"
-    ui_print "   ! You will need to install !"
+    ui_print "   ! 检测到冲突的音频模块!"
+    ui_print "   ! 您需要安装 !"
     ui_print "   ! Audio Modification Library !"
     sleep 3
   fi
@@ -88,8 +88,8 @@ else
 fi
 if [ $API -le 10 ]; then
   ui_print " "
-  ui_print "   Gingerbread rom detected!"
-  ui_print "   Only v2.3.4.0 is compatible!"
+  ui_print "   检测到 Gingerbread 系统 !"
+  ui_print "   仅兼容 v2.3.4.0 !"
   MID=false; NEW=false; MAT=false; PATCH=false
   # Detect driver compatibility
   ui_print " "
@@ -97,22 +97,22 @@ if [ $API -le 10 ]; then
   [ -z $ABIVER ] && ABIVER=0
   CPUFEAT=$(cat /proc/cpuinfo | grep 'Features')
   if [ $ABIVER -ge 7 ] || [ "$(echo $CPUFEAT | grep 'neon')" ]; then
-    ui_print "   Neon Device detected!"
+    ui_print "   检测到 Neon 设备 !"
     DRV=arm
   elif [ "$ABI" == "x86" ]; then
-    ui_print "   x86 Device detected!"
+    ui_print "   检测到 x86 设备 !"
     DRV=x86
   elif [ "$(echo $CPUFEAT | grep 'vfp')" ]; then
-    ui_print "   Non-neon VFP Device detected!"
+    ui_print "   检测到非 Neon VFP 设备 !"
     DRV=VFP
   else
-    ui_print "   Non-Neon, Non-VFP Device detected!"
+    ui_print "   检测到非 Neon , 非 VFP 设备 !"
     DRV=NOVFP
   fi
 elif [ $API -le 13 ]; then
   ui_print " "
-  ui_print "   Honeycomb rom detected!"
-  ui_print "   Only v2.3.4.0 is compatible!"
+  ui_print "   检测到 Honeycomb 系统 !"
+  ui_print "   仅兼容 v2.3.4.0 !"
   MID=false; NEW=false; MAT=false
 fi
 
@@ -121,7 +121,7 @@ KEYCHECK=$INSTALLER/common/keycheck
 chmod 755 $KEYCHECK
 
 ui_print " "
-ui_print "   Removing remnants from past v4a installs..."
+ui_print "   清除过去的v4a安装残留..."
 # Uninstall existing v4a installs
 V4AAPPS=$(find /data/app -type d -name "*com.pittvandewitt.viperfx*" -o -name "*com.audlabs.viperfx*" -o -name "*com.vipercn.viper4android_v2*")
 if [ "$V4AAPPS" ]; then
@@ -155,23 +155,23 @@ if [ -z $MAT ]; then
     FUNCTION=chooseport
   else
     FUNCTION=chooseportold
-    ui_print "   ! Legacy device detected! Using old keycheck method"
+    ui_print "   ! 检测到遗留设备! 使用旧的 keycheck 方案"
     ui_print " "
-    ui_print "- Vol Key Programming -"
-    ui_print "   Press Vol Up Again:"
+    ui_print "- 进行音量键编程 -"
+    ui_print "   再次按下[音量+]键:"
     $FUNCTION "UP"
-    ui_print "   Press Vol Down"
+    ui_print "   按下[音量-]键"
     $FUNCTION "DOWN"
   fi
   ui_print " "
-  ui_print " - Select Version -"
-  ui_print "   Choose which V4A you want installed:"
-  ui_print "   Vol+ = new (2.5.0.5), Vol- = older"
+  ui_print " - 选择版本 -"
+  ui_print "   选择您想要安装的 V4A 版本:"
+  ui_print "   [音量+] = 新版 (2.5.0.5), [音量-] = 旧版"
   MAT=false
   if $FUNCTION; then
     ui_print " "
-    ui_print "   Choose which new V4A you want installed"
-    ui_print "   Vol+ = material, Vol- = original"
+    ui_print "   请选择您想要安装的新版 V4A"
+    ui_print "   [音量+] = material, [音量-] = 原始的"
     if $FUNCTION; then
       MAT=true
     else
@@ -179,36 +179,36 @@ if [ -z $MAT ]; then
     fi
   else
     ui_print " "
-    ui_print "   Choose which older V4A you want installed:"
-    ui_print "   2.3.4.0 V4A will install super quality driver"
-    ui_print "   Vol+ = 2.4.0.1, Vol- = 2.3.4.0"
+    ui_print "   请选择您想要安装的旧版 V4A"
+    ui_print "   2.3.4.0 V4A 将安装超高品质驱动程序"
+    ui_print "   [音量+] = 2.4.0.1, [音量-] = 2.3.4.0"
     $FUNCTION && MID=true
   fi
 else
-  ui_print "   V4A version specified in zipname!"
+  ui_print "   在zip文件名中指定了 V4A 版本!"
 fi
 
 VER="2.5.0.5"
 mkdir -p $INSTALLER/system/lib/soundfx $INSTALLER/system/etc/permissions $INSTALLER/system/app/ViPER4AndroidFX/lib/$ABI
 if $MAT; then
-  ui_print "   Material V4A will be installed"
+  ui_print "   将安装 Material V4A"
   cp -f $INSTALLER/custom/mat/privapp-permissions-com.pittvandewitt.viperfx.xml $INSTALLER/system/etc/permissions/privapp-permissions-com.pittvandewitt.viperfx.xml
   sed -ri "s/name=(.*)/name=\1 Materialized/" $INSTALLER/module.prop
   sed -i "s/author=.*/author=ViPER520, ZhuHang, Team_Dewitt, Ahrion, Zackptg5/" $INSTALLER/module.prop
   $LATESTARTSERVICE && sed -i 's/<ACTIVITY>/com.pittvandewitt.viperfx/g' $INSTALLER/common/service.sh
 elif $NEW; then
-  ui_print "   V4A $VER will be installed"
+  ui_print "   将安装 V4A $VER"
   cp -f $INSTALLER/custom/$VER/privapp-permissions-com.audlabs.viperfx.xml $INSTALLER/system/etc/permissions/privapp-permissions-com.audlabs.viperfx.xml
   $LATESTARTSERVICE && sed -i 's/<ACTIVITY>/com.audlabs.viperfx/g' $INSTALLER/common/service.sh
 elif $MID; then
   VER="2.4.0.1"
-  ui_print "   V4A $VER will be installed"
+  ui_print "   将安装 V4A $VER"
   cp -f $INSTALLER/custom/$VER/privapp-permissions-com.vipercn.viper4android_v2.xml $INSTALLER/system/etc/permissions/privapp-permissions-com.vipercn.viper4android_v2.xml
   $LATESTARTSERVICE && sed -i 's/<ACTIVITY>/com.vipercn.viper4android_v2/g' $INSTALLER/common/service.sh
   LIBPATCH="\/system"; LIBDIR=/system; DYNAMICOREO=false
 else
   VER="2.3.4.0"
-  ui_print "   V4A $VER will be installed"
+  ui_print "   将安装 V4A $VER"
   cp -f $INSTALLER/custom/$VER/privapp-permissions-com.vipercn.viper4android_v2.xml $INSTALLER/system/etc/permissions/privapp-permissions-com.vipercn.viper4android_v2.xml
   $LATESTARTSERVICE && sed -i 's/<ACTIVITY>/com.vipercn.viper4android_v2/g' $INSTALLER/common/service.sh
   LIBPATCH="\/system"; LIBDIR=/system; DYNAMICOREO=false
@@ -231,7 +231,7 @@ fi
 
 if $PATCH; then
   ui_print " "
-  ui_print "   Patching existing audio_effects files..."
+  ui_print "   对现存的 audio_effects 文件打补丁..."
   for OFILE in ${CFGS}; do
     FILE="$UNITY$(echo $OFILE | sed "s|^/vendor|/system/vendor|g")"
     cp_ch -nn $ORIGDIR$OFILE $FILE

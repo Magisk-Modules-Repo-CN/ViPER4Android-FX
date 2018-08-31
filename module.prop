@@ -3,6 +3,6 @@ name=ViPER4Android FX
 version=v1.7.2
 versionCode=52
 author=ViPER520, ZhuHang, Ahrion, Zackptg5
-description=ViPER4Android FX is an audio enhancing software to provide everyone with a better audio experience (You can choose between Material, 2.5.0.5, and 2.3.4.0 during install)
+description=ViPER4Android FX是一个音频增强软件，为每个人提供更好的音频体验 (你可以在安装时选择 Material, 2.5.0.5, 和 2.3.4.0)
 support=https://forum.xda-developers.com/apps/magisk/module-viper4android-fx-2-5-0-5-t3577058
 minMagisk=1530
