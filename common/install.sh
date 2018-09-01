@@ -54,7 +54,7 @@ chooseportold() {
   fi
 }
 
-ui_print "   Decompressing files..."
+ui_print "   解压缩文件......"
 tar -xf $INSTALLER/custom.tar.xz -C $INSTALLER 2>/dev/null
 
 # Tell user aml is needed if applicable
@@ -121,7 +121,7 @@ KEYCHECK=$INSTALLER/common/keycheck
 chmod 755 $KEYCHECK
 
 ui_print " "
-ui_print "   清除过去的v4a安装残留..."
+ui_print "   清除过去的v4a安装残留......"
 # Uninstall existing v4a installs
 V4AAPPS=$(find /data/app -type d -name "*com.pittvandewitt.viperfx*" -o -name "*com.audlabs.viperfx*" -o -name "*com.vipercn.viper4android_v2*")
 if [ "$V4AAPPS" ]; then
@@ -231,7 +231,7 @@ fi
 
 if $PATCH; then
   ui_print " "
-  ui_print "   对现存的 audio_effects 文件打补丁..."
+  ui_print "   对现存的 audio_effects 文件打补丁......"
   for OFILE in ${CFGS}; do
     FILE="$UNITY$(echo $OFILE | sed "s|^/vendor|/system/vendor|g")"
     cp_ch -nn $ORIGDIR$OFILE $FILE
