@@ -3,8 +3,8 @@
 
 ## 兼容性
 * Android Gingerbread(2.3)+
-* Selinux 执行中
-* 所有 root 解决方案 (如果不使用Magisk或SuperSU,则需要 init.d 支持. 尝试 [Init.d Injector](https://forum.xda-developers.com/android/software-hacking/mod-universal-init-d-injector-wip-t3692105))
+* Selinux enforcing
+* 所有 root 解决方案 (如果不使用 Magisk 或 SuperSU, 则需要 init.d 支持. 尝试 [Init.d Injector](https://forum.xda-developers.com/android/software-hacking/mod-universal-init-d-injector-wip-t3692105))
 
 ## 变更日志
 ### v1.7.2 - 8.30.2018
